@@ -1,0 +1,84 @@
+--1. retrieve the columns ProductID, Name, Color and ListPrice from the Production.Product table
+SELECT ProductID, Name, Color, ListPrice 
+FROM Production.Product;
+
+
+--2. retrieve the columns ProductID, Name, Color and ListPrice, and excludes the rows that ListPrice is 0
+SELECT ProductID, Name, Color, ListPrice 
+FROM Production.Product
+WHERE ListPrice != 0;
+
+
+--3. retrieve the columns ProductID, Name, Color and ListPrice, and the rows that are NULL for the Color column
+SELECT ProductID, Name, Color, ListPrice 
+FROM Production.Product
+WHERE Color IS NULL;
+
+
+-- 4. retrieves the columns ProductID, Name, Color and ListPrice, and the rows that are not NULL for the Color column
+SELECT ProductID, Name, Color, ListPrice 
+FROM Production.Product
+WHERE Color IS NOT NULL;
+
+
+--5. retrieves the columns ProductID, Name, Color and ListPrice  where Color IS NOT NULL and ListPrice > 0
+SELECT ProductID, Name, Color, ListPrice 
+FROM Production.Product
+WHERE Color IS NOT NULL AND ListPrice > 0;
+
+
+--6. concatenates the columns Name and Color where Color IS NOT NULL
+SELECT CONCAT(Name, ' ', Color) AS ProductDescription 
+FROM Production.Product
+WHERE Color IS NOT NULL;
+
+
+--7. Write a query that generates the following result set  from Production.Product
+SELECT CONCAT(Name, '  --  COLOR: ', Color) AS Result
+FROM Production.Product
+WHERE Name IN ('LL Crankarm', 'ML Crankarm', 'HL Crankarm', 'Chainring Bolts', 'Chainring Nut', 'Chainring');
+
+
+--8. Write a query to retrieve the to the columns ProductID and Name from the Production.Product table filtered by ProductID from 400 to 500
+SELECT ProductID, Name
+FROM Production.Product
+WHERE ProductID BETWEEN 400 AND 500;
+
+
+--9. Write a query to retrieve the to the columns  ProductID, Name and color from the Production.Product table restricted to the colors black and blue
+SELECT ProductID, NAME, Color
+FROM Production.Product
+Where Color IN ('Black', 'Blue');
+
+
+--10. Write a query to get a result set on products that begins with the letter S. 
+SELECT *
+FROM Production.Product
+WHERE Name LIKE 'S%';
+
+
+--11. retrieve the columns Name and ListPrice from the Production.Product table.Order the result set by the Name column. 
+SELECT Name, ListPrice
+FROM Production.Product
+ORDER BY Name;
+
+
+--12. retrieves the columns Name and ListPrice. Order the result set by the Name column. The products name should start with either 'A' or 'S'
+SELECT Name, ListPrice
+FROM Production.Product
+WHERE Name LIKE 'S%' or Name LIKE 'A%'
+ORDER BY Name;
+
+
+--13. retrieve rows that Name that begins with the letters SPO, but is then not followed by the letter K. Order the result set by the Name
+SELECT *
+FROM Production.Product
+WHERE Name LIKE 'SPO%' AND Name NOT LIKE 'SPOK%'
+ORDER BY Name;
+
+
+--14. retrieve unique colors from the table Production.Product, and order the result set in descending 
+SELECT DISTINCT Color
+FROM Production.Product
+WHERE Color IS NOT NULL
+ORDER BY Color desc;
